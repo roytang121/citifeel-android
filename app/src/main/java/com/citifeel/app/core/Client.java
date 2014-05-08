@@ -10,7 +10,8 @@ import org.apache.http.client.params.ClientPNames;
 
 /**
  * Created by roytang on 31/3/14.
- *
+ * Use volley as first pref.
+ * AsyncHttpClient is used only when posting large file for application/multipart
  */
 public class Client {
     private static final String BASE_URL = "http://server-host/";
