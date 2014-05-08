@@ -78,7 +78,6 @@
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="rebound-0.3.3" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.1-with-sources" level="project" />
-    <orderEntry type="library" exported="" name="universal-image-loader-1.9.1" level="project" />
     <orderEntry type="module" module-name="circleimageview" exported="" />
   </component>
 </module>
