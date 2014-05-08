@@ -35,9 +35,6 @@ public class UIApplication extends Application {
      * volley request queue
      */
     private RequestQueue mRequestQueue;
-
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-    @SuppressWarnings("unused")
     @Override
     public void onCreate() {
         if (Config.DEVELOPER_MODE && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {

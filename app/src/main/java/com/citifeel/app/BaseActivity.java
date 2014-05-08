@@ -18,7 +18,6 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
 
         //Client configuration
         Client.setEnableCirularRedirect(true);  //allowing circularRedirect to prevent exception
