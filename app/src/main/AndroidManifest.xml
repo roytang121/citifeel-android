@@ -24,6 +24,10 @@
             android:name="com.citifeel.app.activity.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name="com.citifeel.app.activity.RegisterActivity"
+            android:label="@string/title_activity_register" >
+        </activity>
     </application>
 
 </manifest>

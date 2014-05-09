@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.citifeel.app.activity.HomeActivity;
+import com.citifeel.app.activity.RegisterActivity;
 import com.citifeel.app.core.ServerRequestManager;
 import com.citifeel.app.model.UserModel;
 import com.citifeel.app.ui.LoginEditTextView;
@@ -63,7 +64,16 @@ public class MainActivity extends BaseActivity {
                 });
             }
         });
-        
+
+        TonyButtonView registerbutton = (TonyButtonView) findViewById(R.id.registerbutton);
+        registerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         CommonUtils.logKeyHash(this);
     }
 
