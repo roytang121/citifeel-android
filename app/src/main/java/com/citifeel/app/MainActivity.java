@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
 //        Login fullscreen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -37,13 +38,15 @@ public class MainActivity extends BaseActivity {
 
         /* start */
 
-        LoginEditTextView edittext = (LoginEditTextView) findViewById(R.id.edittext);
         TonyButtonView loginbutton = (TonyButtonView) findViewById(R.id.loginbutton);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = "jason.ng@citifeel.com";
-                String password = "abcd1919";
+                Log.i("Listener","loginbutton onclick");
+                final LoginEditTextView emailtextfield = (LoginEditTextView) findViewById(R.id.emailtextfield);
+                final LoginEditTextView passwordtextfield = (LoginEditTextView) findViewById(R.id.passwordtextfield);
+                String email = emailtextfield.getText().toString();
+                String password = passwordtextfield.getText().toString();
 
                 ServerRequestManager.login(email, password, new ServerRequestManager.OnLoginCallback() {
                     @Override
@@ -60,6 +63,7 @@ public class MainActivity extends BaseActivity {
                 });
             }
         });
+        
         CommonUtils.logKeyHash(this);
     }
 

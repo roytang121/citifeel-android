@@ -10,22 +10,47 @@
     android:orientation="vertical"
     tools:context="com.citifeel.app.MainActivity"
     android:weightSum="1">
-
-    <com.citifeel.app.ui.LoginEditTextView
-        android:id="@+id/edittext"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
-    <com.citifeel.app.ui.LoginEditTextView
-        android:id="@+id/edittext1"
+        android:src="@drawable/ic_logo_shadow"
+        android:layout_marginTop="48dp"/>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
+        android:text="CitiFeel"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="48dp"/>
+    <com.citifeel.app.ui.LoginEditTextView
+        android:id="@+id/emailtextfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"/>
+    <com.citifeel.app.ui.LoginEditTextView
+        android:id="@+id/passwordtextfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"/>
     <com.citifeel.app.ui.TonyButtonView
         android:id="@+id/loginbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.18" />
-
+        android:layout_weight="0.18"
+        android:layout_marginBottom="20dp"
+        android:tag="登入"/>
+    <com.citifeel.app.ui.TonyButtonView
+        android:id="@+id/registerbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:tag="註冊CitiFeel帳戶"/>
+    <com.citifeel.app.ui.TonyButtonView
+        android:id="@+id/fbloginbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:tag="以facebook登入"/>
 
 </LinearLayout>
