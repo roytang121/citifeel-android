@@ -102,7 +102,7 @@ public class ServerRequestManager {
 
 
     /**
-     * Check credential and statius code
+     * Check credential and status code
      *  limited to String
      */
 
@@ -127,7 +127,7 @@ public class ServerRequestManager {
                         onStatusFail(response.message);
                 }
             } else {
-                Log.i(TAG, "resposne is null ");
+                Log.i(TAG, "response is null ");
             }
         }
 
