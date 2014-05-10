@@ -12,8 +12,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.citifeel.app.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.citifeel.app.LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name="com.citifeel.app.activity.HomeActivity"
+            android:label="@string/title_activity_home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,13 +25,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.citifeel.app.activity.HomeActivity"
-            android:label="@string/title_activity_home" >
-        </activity>
-        <activity
             android:name="com.citifeel.app.activity.RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
+
     </application>
 
 </manifest>
