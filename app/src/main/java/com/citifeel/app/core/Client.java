@@ -47,7 +47,7 @@ public class Client {
         return BASE_URL + relativeUrl;
     }
 
-    public static void setEnableCirularRedirect(boolean enable){
+    public static void setEnableCircularRedirect(boolean enable){
         client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, enable);
     }
 
