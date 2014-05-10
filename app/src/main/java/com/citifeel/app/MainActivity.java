@@ -39,6 +39,7 @@ public class MainActivity extends BaseActivity {
 
         /* start */
 
+        //login method 1: login with our registered account
         TonyButtonView loginbutton = (TonyButtonView) findViewById(R.id.loginbutton);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +51,30 @@ public class MainActivity extends BaseActivity {
                 String password = passwordtextfield.getText().toString();
 
                 ServerRequestManager.login(email, password, new ServerRequestManager.OnLoginCallback() {
+                    @Override
+                    public void onSuccessLogin(UserModel model) {
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailedLogin(String msg) {
+                        Log.i("asdf", "sdf");
+                    }
+                });
+            }
+        });
+
+        //login method 2: login with fb account
+        TonyButtonView fbloginbutton = (TonyButtonView) findViewById(R.id.fbloginbutton);
+        fbloginbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("Listener","fbloginbutton onclick");
+                //do fb SDK login, to get access token, then post to server
+                String access_token="ddd";
+                ServerRequestManager.fblogin(access_token, new ServerRequestManager.OnLoginCallback() {
                     @Override
                     public void onSuccessLogin(UserModel model) {
                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);

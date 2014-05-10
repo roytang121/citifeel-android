@@ -20,7 +20,7 @@ public abstract class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         //Client configuration
-        Client.setEnableCirularRedirect(true);  //allowing circularRedirect to prevent exception
+        Client.setEnableCircularRedirect(true);  //allowing circularRedirect to prevent exception
 
         //init imageLoader if no instance has been given
         if(imageLoader == null){

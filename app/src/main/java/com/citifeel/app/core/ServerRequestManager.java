@@ -63,6 +63,42 @@ public class ServerRequestManager {
 
         UIApplication.getInstance().addToRequestQueue(req);
     }
+    public static void fblogin(String access_token, final OnLoginCallback callback){
+        final HashMap<String,String>params = new HashMap<String,String>();
+        params.put("access_token", access_token);
+
+        StringRequest req = new StringRequest(Request.Method.POST, Server.url(Server.URL_FBLOGIN),
+                new ServerResponseListener() {
+                    @Override
+                    public void onStatusSuccess(String json) {
+                        if(callback != null) {
+                          //  UserModel user = UserModel.from(json, UserModel.class);
+                           // callback.onSuccessLogin(user);
+                        }
+                    }
+
+                    @Override
+                    public void onStatusFail(String msg) {
+                        if(callback != null) {
+                           // callback.onFailedLogin(msg);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //TODO : void?
+                    }
+                })
+        {
+            @Override
+            public Map<String, String> getParams() {
+                return params;
+            }
+        };
+
+        UIApplication.getInstance().addToRequestQueue(req);
+    }
 
     /**
      * register handler
