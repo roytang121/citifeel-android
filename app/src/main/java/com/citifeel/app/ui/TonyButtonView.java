@@ -1,10 +1,14 @@
 package com.citifeel.app.ui;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -15,7 +19,7 @@ import com.citifeel.app.util.CommonUtils;
  */
 public class TonyButtonView extends View {
     int width,height;
-    String text = "登入";
+    String text = "Button";
     Paint mTextPaint;
 
     public TonyButtonView(Context context) {
@@ -38,6 +42,7 @@ public class TonyButtonView extends View {
         mTextPaint.setColor(Color.WHITE);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
         mTextPaint.setTextSize(CommonUtils.dp(getContext(), 18));
+        text = getTag().toString();
     }
 
     public void setText(String text) {
@@ -47,7 +52,7 @@ public class TonyButtonView extends View {
     @Override
     public void onMeasure(int widthSpec, int heightSpec){
         this.width = MeasureSpec.getSize(widthSpec);
-        this.height = CommonUtils.dp(getContext(), 40) + getPaddingBottom() + getPaddingTop();
+        this.height = CommonUtils.dp(getContext(), 50) + getPaddingBottom() + getPaddingTop();
         setMeasuredDimension(width, height);
     }
 

@@ -79,6 +79,7 @@
     <orderEntry type="library" exported="" name="rebound-0.3.3" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.1-with-sources" level="project" />
     <orderEntry type="module" module-name="circleimageview" exported="" />
+    <orderEntry type="module" module-name="facebook" exported="" />
   </component>
 </module>
 

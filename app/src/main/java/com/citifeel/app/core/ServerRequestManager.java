@@ -35,6 +35,7 @@ public class ServerRequestManager {
                 new ServerResponseListener() {
                     @Override
                     public void onStatusSuccess(String json) {
+                        Log.i("login json response:", json);
                         if(callback != null) {
                             UserModel user = UserModel.from(json, UserModel.class);
                             callback.onSuccessLogin(user);
@@ -59,6 +60,43 @@ public class ServerRequestManager {
                             //TODO : void?
                             Log.i("Error", "unknown error ");
                         }
+                    }
+                })
+        {
+            @Override
+            public Map<String, String> getParams() {
+                return params;
+            }
+        };
+
+        UIApplication.getInstance().addToRequestQueue(req);
+    }
+    public static void fblogin(String access_token, final OnLoginCallback callback){
+        final HashMap<String,String>params = new HashMap<String,String>();
+        params.put("access_token", access_token);
+
+        StringRequest req = new StringRequest(Request.Method.POST, Server.url(Server.URL_FBLOGIN),
+                new ServerResponseListener() {
+                    @Override
+                    public void onStatusSuccess(String json) {
+                        Log.i("login json response:", json);
+                        if(callback != null) {
+                            UserModel user = UserModel.from(json, UserModel.class);
+                            callback.onSuccessLogin(user);
+                        }
+                    }
+
+                    @Override
+                    public void onStatusFail(String msg) {
+                        if(callback != null) {
+                           callback.onFailedLogin(msg);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //TODO : void?
                     }
                 })
         {
@@ -109,7 +147,7 @@ public class ServerRequestManager {
 
 
     /**
-     * Check credential and statius code
+     * Check credential and status code
      *  limited to String
      */
 
@@ -134,7 +172,7 @@ public class ServerRequestManager {
                         onStatusFail(response.message);
                 }
             } else {
-                Log.i(TAG, "resposne is null ");
+                Log.i(TAG, "response is null ");
             }
         }
 

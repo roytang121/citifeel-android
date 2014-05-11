@@ -1,2 +1,3 @@
 include ':app'
 include ':libraries:circleimageview'
+include ':libraries:facebook'
