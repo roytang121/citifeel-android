@@ -56,7 +56,7 @@ public class HomeActivity extends Activity {
 
                 //clear fb session info
                 Session fbsession = Session.getActiveSession();
-                if (!fbsession.isClosed()) {
+                if (fbsession!=null && !fbsession.isClosed()) {
                     fbsession.closeAndClearTokenInformation();
                 }
 
