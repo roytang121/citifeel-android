@@ -32,13 +32,17 @@ public class SessionManager {
     private static final String IS_LOGIN = "IsLoggedIn";
 
     // User name (make variable public to access from outside)
-    public static final String KEY_FIRST_NAME = "first name";
-    public static final String KEY_LAST_NAME = "last name";
+    public static final String KEY_FIRST_NAME = "firstname";
+    public static final String KEY_LAST_NAME = "lastname";
     public static final String KEY_EMAIL = "email";
-    public static final String KEY_USER_ID = "user id";
-    public static final String KEY_SESSION_TOKEN = "session token";
-    public static final String KEY_SESSION_EXPIRE_DATE = "session expire date";
-    public static final String KEY_FB_ACCESS_TOKEN = "fb access token";
+    public static final String KEY_USER_ID = "user_id";
+    public static final String KEY_PROFILE_PIC_LINK = "profile_pic";
+    public static final String KEY_COLLECTION_PRIVACY = "collection_privacy";
+    public static final String KEY_USER_INFO = "user_info";
+    public static final String KEY_MEMBER_STATUS = "status";
+    public static final String KEY_SESSION_TOKEN = "session_token";
+    public static final String KEY_SESSION_EXPIRE_TIME = "expire_time";
+    public static final String KEY_FB_ACCESS_TOKEN = "fb_access_token";
 
     // Constructor
     public SessionManager(Context context) {
@@ -75,7 +79,7 @@ public class SessionManager {
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
         user.put(KEY_USER_ID, pref.getString(KEY_USER_ID, null));
         user.put(KEY_SESSION_TOKEN, pref.getString(KEY_SESSION_TOKEN, null));
-        user.put(KEY_SESSION_EXPIRE_DATE, pref.getString(KEY_SESSION_EXPIRE_DATE, null));
+        user.put(KEY_SESSION_EXPIRE_TIME, pref.getString(KEY_SESSION_EXPIRE_TIME, null));
         user.put(KEY_FB_ACCESS_TOKEN, pref.getString(KEY_FB_ACCESS_TOKEN, null));
 
         return user;

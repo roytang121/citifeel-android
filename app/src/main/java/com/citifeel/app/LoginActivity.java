@@ -19,6 +19,7 @@ import com.citifeel.app.ui.LoginEditTextView;
 import com.citifeel.app.ui.TonyButtonView;
 import com.citifeel.app.util.CommonUtils;
 import com.citifeel.app.util.AlertDialogManager;
+import com.citifeel.app.util.SessionManager;
 
 /**
  * @author roytang
@@ -29,10 +30,15 @@ public class LoginActivity extends BaseActivity {
     // Alert Dialog Manager
     AlertDialogManager alert = new AlertDialogManager();
 
+    // Session Manager Class
+    SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Session Manager
+        session = new SessionManager(getApplicationContext());
 
 //        Login fullscreen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -56,7 +62,10 @@ public class LoginActivity extends BaseActivity {
 
                 ServerRequestManager.login(email, password, new ServerRequestManager.OnLoginCallback() {
                     @Override
-                    public void onSuccessLogin(UserModel model) {
+                    public void onSuccessLogin(UserModel user) {
+                        // Creating user login session
+                        session.createLoginSession(user.getUserHashMap());
+
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
@@ -65,7 +74,7 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onFailedLogin(String msg) {
                         Log.i("error message", msg);
-                        alert.showAlertDialog(LoginActivity.this, "登入失敗..", msg,null);
+                        alert.showAlertDialog(LoginActivity.this, "登入失敗..", msg, null);
                     }
                 });
             }
