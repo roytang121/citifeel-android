@@ -72,16 +72,17 @@ public class ServerRequestManager {
                 new ServerResponseListener() {
                     @Override
                     public void onStatusSuccess(String json) {
+                        Log.i("login json response:", json);
                         if(callback != null) {
-                          //  UserModel user = UserModel.from(json, UserModel.class);
-                           // callback.onSuccessLogin(user);
+                            UserModel user = UserModel.from(json, UserModel.class);
+                            callback.onSuccessLogin(user);
                         }
                     }
 
                     @Override
                     public void onStatusFail(String msg) {
                         if(callback != null) {
-                           // callback.onFailedLogin(msg);
+                           callback.onFailedLogin(msg);
                         }
                     }
                 },

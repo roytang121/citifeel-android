@@ -21,6 +21,13 @@ import com.citifeel.app.util.CommonUtils;
 import com.citifeel.app.util.AlertDialogManager;
 import com.citifeel.app.util.SessionManager;
 
+import com.facebook.LoggingBehavior;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.Settings;
+
+import java.util.Arrays;
+
 /**
  * @author roytang
  * Launcher acitivty
@@ -33,12 +40,19 @@ public class LoginActivity extends BaseActivity {
     // Session Manager Class
     SessionManager session;
 
+    private Session.StatusCallback statusCallback = new SessionStatusCallback();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Session Manager
         session = new SessionManager(getApplicationContext());
+
+        //FB session
+        Settings.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
+        Session fbsession = new Session(this);
+        Session.setActiveSession(fbsession);
 
 //        Login fullscreen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -82,25 +96,12 @@ public class LoginActivity extends BaseActivity {
 
         //login method 2: login with fb account
         com.facebook.widget.LoginButton fbloginbutton = (com.facebook.widget.LoginButton) findViewById(R.id.fbloginbutton);
+        fbloginbutton.setReadPermissions(Arrays.asList("public_profile", "user_status"));
         fbloginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("Listener","fbloginbutton onclick");
-                //do fb SDK login, to get access token, then post to server
-                String access_token="ddd";
-                ServerRequestManager.fblogin(access_token, new ServerRequestManager.OnLoginCallback() {
-                    @Override
-                    public void onSuccessLogin(UserModel model) {
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-
-                    @Override
-                    public void onFailedLogin(String msg) {
-                        Log.i("asdf", "sdf");
-                    }
-                });
+                Session.openActiveSession(LoginActivity.this, true, statusCallback);
             }
         });
 
@@ -116,6 +117,11 @@ public class LoginActivity extends BaseActivity {
         CommonUtils.logKeyHash(this);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -143,4 +149,39 @@ public class LoginActivity extends BaseActivity {
         display.getSize(size);
         return size;
     }
+
+    private class SessionStatusCallback implements Session.StatusCallback {
+        @Override
+        public void call(Session fbsession, SessionState state, Exception exception) {
+            //make request to server to validate the login by fb
+            //post access token to server
+            Log.i("fb session state", state.toString());
+            if(state.equals(SessionState.OPENED)) {
+                String access_token = fbsession.getAccessToken();
+
+                Log.i("access_token", access_token);
+                ServerRequestManager.fblogin(access_token, new ServerRequestManager.OnLoginCallback() {
+                    @Override
+                    public void onSuccessLogin(UserModel user) {
+                        // Creating user login session
+                        session.createLoginSession(user.getUserHashMap());
+
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailedLogin(String msg) {
+                        Log.i("error message", msg);
+                        alert.showAlertDialog(LoginActivity.this, "登入失敗..", msg, null);
+                    }
+                });
+
+            }
+
+        }
+    }
+
+
 }

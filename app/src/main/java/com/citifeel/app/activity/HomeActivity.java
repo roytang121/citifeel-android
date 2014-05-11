@@ -1,12 +1,19 @@
 package com.citifeel.app.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.citifeel.app.R;
+import com.citifeel.app.core.ServerRequestManager;
+import com.citifeel.app.ui.TonyButtonView;
 import com.citifeel.app.util.SessionManager;
+import com.facebook.Session;
+
 import java.util.HashMap;
 
 public class HomeActivity extends Activity {
@@ -36,6 +43,26 @@ public class HomeActivity extends Activity {
             Log.i("Login successful, user email:", email);
         }
 
+        TonyButtonView logoutbutton = (TonyButtonView) findViewById(R.id.logoutbutton);
+        logoutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("Listener","logoutbutton onclick");
+
+                // Clear the session data
+                // This will clear all session data and
+                // redirect user to LoginActivity
+                session.logoutUser();
+
+                //clear fb session info
+                Session fbsession = Session.getActiveSession();
+                if (!fbsession.isClosed()) {
+                    fbsession.closeAndClearTokenInformation();
+                }
+
+
+            }
+        });
 
 
     }

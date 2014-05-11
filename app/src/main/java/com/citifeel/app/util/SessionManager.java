@@ -45,7 +45,7 @@ public class SessionManager {
     public static final String KEY_MEMBER_STATUS = "status";
     public static final String KEY_SESSION_TOKEN = "session_token";
    // public static final String KEY_SESSION_EXPIRE_TIME = "expire_time";
-    public static final String KEY_FB_ACCESS_TOKEN = "fb_access_token";
+   // public static final String KEY_FB_ACCESS_TOKEN = "fb_access_token";
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -85,7 +85,7 @@ public class SessionManager {
         user.put(KEY_USER_ID, pref.getString(KEY_USER_ID, null));
         user.put(KEY_SESSION_TOKEN, pref.getString(KEY_SESSION_TOKEN, null));
       //  user.put(KEY_SESSION_EXPIRE_TIME, pref.getString(KEY_SESSION_EXPIRE_TIME, null));
-        user.put(KEY_FB_ACCESS_TOKEN, pref.getString(KEY_FB_ACCESS_TOKEN, null));
+      //user.put(KEY_FB_ACCESS_TOKEN, pref.getString(KEY_FB_ACCESS_TOKEN, null));
 
         return user;
     }
