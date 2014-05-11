@@ -16,7 +16,7 @@ public class UserModel extends JSONModel{
     public String user_info;
     public String status;
     public String session_token;
-    public String expire_time;
+   // public String expire_time;//session wont expire::not implement
 
     public HashMap<String, String> getUserHashMap(){
         HashMap<String, String> user = new HashMap<String, String>();
@@ -31,7 +31,7 @@ public class UserModel extends JSONModel{
         user.put(SessionManager.KEY_USER_INFO, user_info);
         user.put(SessionManager.KEY_MEMBER_STATUS, status);
         user.put(SessionManager.KEY_SESSION_TOKEN, session_token);
-        user.put(SessionManager.KEY_SESSION_EXPIRE_TIME, expire_time);
+       // user.put(SessionManager.KEY_SESSION_EXPIRE_TIME, expire_time);
 
         return user;
     }

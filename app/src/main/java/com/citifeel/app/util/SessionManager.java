@@ -3,6 +3,9 @@ package com.citifeel.app.util;
 /**
  * Created by Jason Ng on 11/5/14.
  */
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import android.content.Context;
@@ -41,8 +44,10 @@ public class SessionManager {
     public static final String KEY_USER_INFO = "user_info";
     public static final String KEY_MEMBER_STATUS = "status";
     public static final String KEY_SESSION_TOKEN = "session_token";
-    public static final String KEY_SESSION_EXPIRE_TIME = "expire_time";
+   // public static final String KEY_SESSION_EXPIRE_TIME = "expire_time";
     public static final String KEY_FB_ACCESS_TOKEN = "fb_access_token";
+
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     // Constructor
     public SessionManager(Context context) {
@@ -79,7 +84,7 @@ public class SessionManager {
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
         user.put(KEY_USER_ID, pref.getString(KEY_USER_ID, null));
         user.put(KEY_SESSION_TOKEN, pref.getString(KEY_SESSION_TOKEN, null));
-        user.put(KEY_SESSION_EXPIRE_TIME, pref.getString(KEY_SESSION_EXPIRE_TIME, null));
+      //  user.put(KEY_SESSION_EXPIRE_TIME, pref.getString(KEY_SESSION_EXPIRE_TIME, null));
         user.put(KEY_FB_ACCESS_TOKEN, pref.getString(KEY_FB_ACCESS_TOKEN, null));
 
         return user;
@@ -91,7 +96,20 @@ public class SessionManager {
      * Else won't do anything
      * */
     public boolean checkLogin(){
-        if(!this.isLoggedIn()){
+        /* no session expire::not implement
+        long diff=0;
+        try{
+            Date now =new Date();
+            Date d2 = dateFormat.parse(pref.getString(KEY_SESSION_EXPIRE_TIME,null));
+
+            //in milliseconds
+            diff = d2.getTime() - now.getTime();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } */
+
+        if(!this.isLoggedIn()){ //if session expire implement : && diff> 1000
             // user is not logged in redirect him to Login Activity
             Intent i = new Intent(_context, LoginActivity.class);
             // Closing all the Activities
