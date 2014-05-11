@@ -103,6 +103,7 @@ public class LoginEditTextView extends EditText implements View.OnFocusChangeLis
 
     @Override
     public void onFocusChange(View view, boolean b) {
+        if(isInEditMode()) return;
         if(b) {
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT);

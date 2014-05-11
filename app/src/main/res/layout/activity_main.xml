@@ -10,16 +10,25 @@
     android:orientation="vertical"
     tools:context="com.citifeel.app.MainActivity"
     android:weightSum="1">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_citifeel_logo"/>
+    <com.citifeel.app.ui.LoginEditTextView
+        android:id="@+id/email_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="10dp"/>
+    <requestFocus />
 
     <com.citifeel.app.ui.LoginEditTextView
-        android:id="@+id/edittext"
+        android:id="@+id/password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
-    <com.citifeel.app.ui.LoginEditTextView
-        android:id="@+id/edittext1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:layout_marginBottom="10dp"/>
     <com.citifeel.app.ui.TonyButtonView
         android:id="@+id/loginbutton"

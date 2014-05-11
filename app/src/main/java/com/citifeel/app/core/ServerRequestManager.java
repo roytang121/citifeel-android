@@ -52,6 +52,13 @@ public class ServerRequestManager {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //TODO : void?
+                        if(error != null && error.networkResponse != null){
+                            String json = new String(error.networkResponse.data);
+                            Log.i("Error", json);
+                        } else {
+                            //TODO : void?
+                            Log.i("Error", "unknown error ");
+                        }
                     }
                 })
         {

@@ -1,15 +1,18 @@
 package com.citifeel.app;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import com.citifeel.app.activity.HomeActivity;
 import com.citifeel.app.core.ServerRequestManager;
@@ -37,17 +40,26 @@ public class MainActivity extends BaseActivity {
 
         /* start */
 
-        LoginEditTextView edittext = (LoginEditTextView) findViewById(R.id.edittext);
+        final LoginEditTextView email_input = (LoginEditTextView) findViewById(R.id.email_input);
+        final LoginEditTextView password_input = (LoginEditTextView) findViewById(R.id.password_input);
+
+
+        InputMethodManager imm = (InputMethodManager) MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(email_input, InputMethodManager.SHOW_IMPLICIT);
+
         TonyButtonView loginbutton = (TonyButtonView) findViewById(R.id.loginbutton);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = "jason.ng@citifeel.com";
-                String password = "abcd1919";
+                final ProgressDialog pd = ProgressDialog.show(MainActivity.this, "Log in..", "Please wait while login", false);
+
+                String email = email_input.getText().toString();
+                String password = password_input.getText().toString();
 
                 ServerRequestManager.login(email, password, new ServerRequestManager.OnLoginCallback() {
                     @Override
                     public void onSuccessLogin(UserModel model) {
+                        pd.dismiss();
                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
@@ -55,7 +67,10 @@ public class MainActivity extends BaseActivity {
 
                     @Override
                     public void onFailedLogin(String msg) {
-                        Log.i("asdf", "sdf");
+                        pd.dismiss();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage(msg);
+                        builder.show();
                     }
                 });
             }
