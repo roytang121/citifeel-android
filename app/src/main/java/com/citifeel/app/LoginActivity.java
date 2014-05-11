@@ -18,12 +18,16 @@ import com.citifeel.app.model.UserModel;
 import com.citifeel.app.ui.LoginEditTextView;
 import com.citifeel.app.ui.TonyButtonView;
 import com.citifeel.app.util.CommonUtils;
+import com.citifeel.app.util.AlertDialogManager;
 
 /**
  * @author roytang
  * Launcher acitivty
  */
 public class LoginActivity extends BaseActivity {
+
+    // Alert Dialog Manager
+    AlertDialogManager alert = new AlertDialogManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +64,8 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onFailedLogin(String msg) {
-                        Log.i("asdf", "sdf");
+                        Log.i("error message", msg);
+                        alert.showAlertDialog(LoginActivity.this, "登入失敗..", msg,null);
                     }
                 });
             }

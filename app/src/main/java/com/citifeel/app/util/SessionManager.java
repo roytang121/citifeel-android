@@ -26,7 +26,7 @@ public class SessionManager {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-    private static final String PREF_NAME = "AndroidHivePref";
+    private static final String PREF_NAME = "CitiFeelPref";
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";

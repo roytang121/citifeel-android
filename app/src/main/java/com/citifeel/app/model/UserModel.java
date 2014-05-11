@@ -9,7 +9,6 @@ public class UserModel extends JSONModel{
     public String firstname;
     public String lastname;
     public String profile_pic;
-    public String fb_id;
     public String collection_privacy;
     public String user_info;
     public String status;
