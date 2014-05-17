@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.citifeel.app.LoginActivity" >
+    tools:context="com.citifeel.app.activity.LoginActivity" >
     
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"

@@ -1,5 +1,6 @@
-package com.citifeel.app;
+package com.citifeel.app.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -11,17 +12,15 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import android.app.ProgressDialog;
-import com.citifeel.app.activity.HomeActivity;
-import com.citifeel.app.activity.RegisterActivity;
+import com.citifeel.app.BaseActivity;
+import com.citifeel.app.R;
 import com.citifeel.app.core.ServerRequestManager;
 import com.citifeel.app.model.UserModel;
 import com.citifeel.app.ui.LoginEditTextView;
 import com.citifeel.app.ui.TonyButtonView;
-import com.citifeel.app.util.CommonUtils;
 import com.citifeel.app.util.AlertDialogManager;
+import com.citifeel.app.util.CommonUtils;
 import com.citifeel.app.util.SessionManager;
-
 import com.facebook.LoggingBehavior;
 import com.facebook.Session;
 import com.facebook.SessionState;
@@ -73,6 +72,9 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         /* start */
+        final LoginEditTextView emailtextfield = (LoginEditTextView)findViewById(R.id.emailtextfield);
+        final LoginEditTextView passwordtextfield = (LoginEditTextView) findViewById(R.id.passwordtextfield);
+
 
         //login method 1: login with our registered account
         TonyButtonView loginbutton = (TonyButtonView) findViewById(R.id.loginbutton);
@@ -80,15 +82,15 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Log.i("Listener","loginbutton onclick");
-                final LoginEditTextView emailtextfield = (LoginEditTextView) findViewById(R.id.emailtextfield);
-                final LoginEditTextView passwordtextfield = (LoginEditTextView) findViewById(R.id.passwordtextfield);
                 String email = emailtextfield.getText().toString();
                 String password = passwordtextfield.getText().toString();
-
+                /* on start progress */
+                final ProgressDialog pd = alert.showProgress(LoginActivity.this, "Login", "Please wait while loading", true, false);
                 ServerRequestManager.login(email, password, new ServerRequestManager.OnLoginCallback() {
                     @Override
                     public void onSuccessLogin(UserModel user) {
                         // Creating user login session
+                        pd.dismiss();
                         session.createLoginSession(user.getUserHashMap());
 
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -98,6 +100,7 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onFailedLogin(String msg) {
+                        pd.dismiss();
                         Log.i("error message", msg);
                         alert.showAlertDialog(LoginActivity.this, "登入失敗..", msg, null);
                     }

@@ -3,17 +3,18 @@ package com.citifeel.app.util;
 /**
  * Created by Jason Ng on 11/5/14.
  */
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.citifeel.app.LoginActivity;
+import com.citifeel.app.activity.LoginActivity;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 
 public class SessionManager {
     // Shared Preferences
@@ -120,6 +121,9 @@ public class SessionManager {
 
             // Staring Login Activity
             _context.startActivity(i);
+
+            //kill the original activity from context
+            ((Activity)_context).finish();
 
             return false;
         }

@@ -2,12 +2,9 @@ package com.citifeel.app.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.citifeel.app.util.CommonUtils;
@@ -18,7 +15,7 @@ import com.facebook.rebound.SpringSystem;
 /**
  * Created by roytang on 8/5/14.
  */
-public class LoginEditTextView extends EditText implements View.OnFocusChangeListener{
+public class LoginEditTextView extends EditText implements View.OnClickListener{
     int width, height;
     Spring spring;
     boolean pressed = false;
@@ -39,7 +36,8 @@ public class LoginEditTextView extends EditText implements View.OnFocusChangeLis
     }
 
     private void init(){
-        setOnFocusChangeListener(this);
+        //setOnFocusChangeListener(this);
+        //setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +62,7 @@ public class LoginEditTextView extends EditText implements View.OnFocusChangeLis
         super.onDraw(canvas);
     }
 
+    /*
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 //        super.onTouchEvent(event);
@@ -76,7 +75,7 @@ public class LoginEditTextView extends EditText implements View.OnFocusChangeLis
         }
 
         return true;
-    }
+    }*/
 
     private void onPress() {
         this.setFocusableInTouchMode(true);
@@ -103,14 +102,7 @@ public class LoginEditTextView extends EditText implements View.OnFocusChangeLis
     }
 
     @Override
-    public void onFocusChange(View view, boolean b) {
-        if(isInEditMode()) return;
-        if(b) {
-            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT);
-        }else{
-            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(this.getWindowToken(), 0);
-        }
+    public void onClick(View view) {
+        //onPress();
     }
 }

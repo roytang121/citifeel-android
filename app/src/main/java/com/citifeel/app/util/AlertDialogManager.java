@@ -5,6 +5,7 @@ package com.citifeel.app.util;
  */
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
@@ -43,6 +44,11 @@ public class AlertDialogManager {
 
         // Showing Alert Message
         alertDialog.show();
+    }
+
+    public ProgressDialog showProgress(Context context, String title, String msg, boolean intermediate, boolean cancelable) {
+        //TODO: customize the progress dialog style down here
+        return ProgressDialog.show(context, title, msg, intermediate, cancelable);
     }
 
 }

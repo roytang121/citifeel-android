@@ -66,6 +66,6 @@ public class LoginEditTextDrawable extends Drawable {
         bgRect.bottom = height;
 
         //Log.i("spec", width + "," + height);
-        canvas.drawRoundRect(bgRect, CommonUtils.dp(context, 8), CommonUtils.dp(context, 8), mBgPaint);
+        canvas.drawRoundRect(bgRect, CommonUtils.dp(context, 4), CommonUtils.dp(context, 4), mBgPaint);
     }
 }

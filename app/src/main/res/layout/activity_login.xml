@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="@drawable/login_bg"
     android:orientation="vertical"
-    tools:context="com.citifeel.app.LoginActivity"
+    tools:context="com.citifeel.app.activity.LoginActivity"
     android:weightSum="1">
     <ImageView
         android:layout_width="match_parent"
@@ -27,11 +27,15 @@
         android:id="@+id/emailtextfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"/>
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="8dp">
+            <requestFocus />
+    </com.citifeel.app.ui.LoginEditTextView>
     <com.citifeel.app.ui.LoginEditTextView
         android:id="@+id/passwordtextfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:layout_marginBottom="8dp"/>
     <com.citifeel.app.ui.TonyButtonView
         android:id="@+id/loginbutton"
