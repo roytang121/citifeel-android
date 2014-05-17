@@ -45,6 +45,7 @@ public class RegisterActivity extends Activity {
             finish();
         } else {
             /* actually noy very possible to come to this stage , just for place holder */
+            super.onBackPressed();
         }
     }
 
