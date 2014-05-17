@@ -1,6 +1,7 @@
 package com.citifeel.app.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,4 +36,19 @@ public class RegisterActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if(!finishRegister()){
+            /* back to login activity */
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            /* actually noy very possible to come to this stage , just for place holder */
+        }
+    }
+
+    private boolean finishRegister() {
+        return false;
+    }
 }

@@ -134,6 +134,7 @@ public class LoginActivity extends BaseActivity {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 finish();
+
             }
         });
         CommonUtils.logKeyHash(this);
