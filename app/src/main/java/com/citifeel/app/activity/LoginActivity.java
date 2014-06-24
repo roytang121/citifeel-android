@@ -64,7 +64,7 @@ public class LoginActivity extends BaseActivity {
             fbsession.addCallback(statusCallback);
         }
 
-//        Login fullscreen
+        //Login fullscreen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -83,9 +83,17 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View view) {
                 Log.i("Listener","loginbutton onclick");
                 String email = emailtextfield.getText().toString();
+                if(email.equals("")){
+                    alert.showAlertDialog(LoginActivity.this,"登入失敗","請輸入有效的用戶名！",false);
+                    return;
+                }
                 String password = passwordtextfield.getText().toString();
+                if(password.equals("")){
+                    alert.showAlertDialog(LoginActivity.this,"登入失敗","請輸入正確的密碼！",false);
+                    return;
+                }
                 /* on start progress */
-                final ProgressDialog pd = alert.showProgress(LoginActivity.this, "Login", "Please wait while loading", true, false);
+                final ProgressDialog pd = alert.showProgress(LoginActivity.this, "登入", "登入中，請稍候...", true, false);
                 ServerRequestManager.login(email, password, new ServerRequestManager.OnLoginCallback() {
                     @Override
                     public void onSuccessLogin(UserModel user) {
