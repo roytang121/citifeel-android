@@ -5,11 +5,12 @@
     <string name="app_id">282346085259652</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_create">Create</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_stack">StackActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
-
+    <string name="title_activity_search">SearchActivity</string>
 
 </resources>

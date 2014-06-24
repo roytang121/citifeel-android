@@ -2,6 +2,7 @@ package com.citifeel.app.activity;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -26,6 +27,7 @@ public class HomeActivity extends FragmentActivity {
 
     // items for tab bar
     public static final String[] TABS = {"Home", "Page2", "Page3"};
+    public static final int[] TABS_D = {R.drawable.ic_action_group, R.drawable.ic_action_place, R.drawable.ic_action_person};
 
     //View pager
     ViewPager mViewPager;
@@ -93,7 +95,8 @@ public class HomeActivity extends FragmentActivity {
         for (int i = 0; i < TABS.length; i++) {
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText(TABS[i])
+//                            .setText(TABS[i])
+                            .setIcon(getResources().getDrawable(TABS_D[i]))
                             .setTabListener(tabListener));
         }
 
@@ -127,6 +130,11 @@ public class HomeActivity extends FragmentActivity {
         int id = item.getItemId();
         if (id == R.id.action_logout) {
             doLogout();
+            return true;
+        } else if(id == R.id.action_search) {
+            /* jump to search activity */
+            Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

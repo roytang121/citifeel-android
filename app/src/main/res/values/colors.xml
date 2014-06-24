@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#ffffff</color>
+    <color name="tab_highlight">#ff22cf00</color>
+    <color name="orange">#FFBB33</color>
+    <color name="orange_strong">#FF8800</color>
+</resources>

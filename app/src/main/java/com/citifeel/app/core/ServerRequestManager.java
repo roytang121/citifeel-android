@@ -3,6 +3,7 @@ package com.citifeel.app.core;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -59,6 +60,9 @@ public class ServerRequestManager {
                         } else {
                             //TODO : void?
                             Log.i("Error", "unknown error ");
+                            if(callback != null) {
+                                callback.onFailedLogin("");
+                            }
                         }
                     }
                 })
@@ -68,6 +72,12 @@ public class ServerRequestManager {
                 return params;
             }
         };
+
+        //placeholder
+        req.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         UIApplication.getInstance().addToRequestQueue(req);
     }
