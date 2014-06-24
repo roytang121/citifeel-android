@@ -6,6 +6,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
 import android.util.AttributeSet;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.citifeel.app.R;
  */
 public class TagSearchView extends SearchView implements SearchView.OnQueryTextListener{
     private TextView tt;
+    private EditText editText;
 
     public TagSearchView(Context context) {
         super(context);
@@ -41,32 +43,35 @@ public class TagSearchView extends SearchView implements SearchView.OnQueryTextL
         ImageView icon = (ImageView) findViewById(searchImgId);
         icon.setImageResource(R.drawable.ic_action_search);
 
+        int eid = getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        editText = (EditText) findViewById(id);
+
     }
 
     public void addTag(String tag) {
-        Tag d = new Tag("tag");
+        Tag d = new Tag("Tag");
         int tagH = getHeight() / 2;
         d.setHeight(tagH);
         ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BASELINE);
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        builder.append("app [tag]");
+        builder.append("[tag]");
         builder.setSpan(new ImageSpan(d), builder.length() - "[tag]".length(), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        builder.append("[tag] app");
-        builder.setSpan(new ImageSpan(d), builder.length() - "[tag]".length(), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
         tt.setText(builder);
+
+        editText.setSelection(editText.length());
     }
 
     @Override
     public boolean onQueryTextChange(String s) {
+
+        /* here should show hint */
         return false;
     }
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-//        s = s.replace("[tag]", "");
+        /* should do nothing here */
         addTag(s);
         return true;
     }
