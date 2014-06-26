@@ -28,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
+        android:hint="電郵地址"
         android:layout_marginBottom="8dp">
             <requestFocus />
     </com.citifeel.app.ui.LoginEditTextView>
@@ -36,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:hint="密碼"
         android:layout_marginBottom="8dp"/>
     <com.citifeel.app.ui.TonyButtonView
         android:id="@+id/loginbutton"
