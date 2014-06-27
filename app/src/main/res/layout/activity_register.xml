@@ -19,7 +19,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:hint="電郵地址" />
+        android:hint="電郵地址"
+        android:drawableLeft="@drawable/ic_action_email" />
 
     <EditText
         android:id="@+id/passwordtextfield_reg"
@@ -30,7 +31,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="16dp"
-        android:hint="密碼"/>
+        android:hint="密碼"
+        android:drawableLeft="@drawable/ic_action_accounts"/>
 
     <EditText
         android:id="@+id/retypepasswordtextfield_reg"
@@ -41,7 +43,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="16dp"
-        android:hint="確認密碼"/>
+        android:hint="確認密碼"
+        android:drawableLeft="@drawable/ic_action_accounts"/>
 
     <TableLayout
         android:layout_height="wrap_content"
@@ -53,8 +56,9 @@
         android:layout_height="wrap_content">
         <TextView
             android:text="關於你"
+            android:textSize="20sp"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="4dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="10dp"/>
         <TextView
@@ -62,7 +66,7 @@
             android:gravity="right"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"/>
     </TableRow>
 
@@ -81,59 +85,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="16dp"
                 fb:login_text="使用facebook資料"
                 fb:logout_text=""/>
-            <View android:layout_height="2dip" android:layout_width="match_parent" android:background="#FF909090" />
+            <View android:layout_height="1dip" android:layout_width="match_parent"  android:layout_marginRight="10dp" android:background="#D3D3D3" />
             <EditText
                 android:id="@+id/usernametextfield"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="4dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="16dp"
-                android:hint="暱稱"/>
+                android:hint="暱稱"
+                android:drawableLeft="@drawable/ic_action_person" />
         </LinearLayout>
         <com.citifeel.app.ui.RoundedImageView
             android:id="@+id/profileImageView"
-            android:src="@drawable/ic_action_person"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_vertical"/>
+            android:src="@drawable/no_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"/>
 
      </TableRow>
 
     </TableLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        <TextView
-            android:text="閣下確認註冊CitiFeel帳戶即表示閣下同意本公司之"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"/>
-        <TextView
-            android:text="及"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"/>
-        <TextView
-            android:text="。"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"/>
+    <com.citifeel.app.ui.FlowLayout
+        android:id="@+id/flow_layout"
+        android:layout_marginLeft="5dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    </com.citifeel.app.ui.FlowLayout>
 
-    </LinearLayout>
+
+
+
 
 </LinearLayout>

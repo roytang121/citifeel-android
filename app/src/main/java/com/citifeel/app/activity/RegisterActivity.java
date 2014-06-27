@@ -5,7 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import com.citifeel.app.R;
+import com.citifeel.app.ui.FlowLayout.LayoutParams;
+import android.text.method.LinkMovementMethod;
+import android.text.Html;
+import android.app.ActionBar;
 
 public class RegisterActivity extends Activity {
 
@@ -13,6 +19,21 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        ViewGroup flowContainer = (ViewGroup) findViewById(R.id.flow_layout);
+        TextView statTextView=new TextView(this);
+        statTextView.setText(Html.fromHtml("閣下確認註冊CitiFeel帳戶即表示閣下同意本公司之<a href=\"http://www.google.com\">使用條款</a>及<a href=\"http://www.google.com\">私隱聲明</a> 。"));
+        statTextView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        flowContainer.addView(statTextView,
+                new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(getResources().getDrawable( R.drawable.ic_action_back ));
+
     }
 
 
@@ -52,4 +73,6 @@ public class RegisterActivity extends Activity {
     private boolean finishRegister() {
         return false;
     }
+
+
 }

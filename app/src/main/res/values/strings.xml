@@ -10,7 +10,9 @@
     <string name="title_activity_stack">StackActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_register">CitiFeel帳戶</string>
     <string name="title_activity_search">SearchActivity</string>
+
+
 
 </resources>
