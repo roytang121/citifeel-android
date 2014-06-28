@@ -48,7 +48,7 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         // Session Manager
-        session = new SessionManager(getApplicationContext());
+        session = new SessionManager(LoginActivity.this);
 
         //FB session
         Settings.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);

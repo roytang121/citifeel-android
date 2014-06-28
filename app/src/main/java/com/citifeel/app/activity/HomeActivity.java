@@ -42,7 +42,7 @@ public class HomeActivity extends FragmentActivity {
         // Session class instance
         /* avoid using applicationcontext */
 //        session = new SessionManager(getApplicationContext());
-        session = new SessionManager(this);
+        session = new SessionManager(HomeActivity.this);
 
         /**
          * Call this function whenever you want to check user login
