@@ -1,9 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.citifeel.app.activity.RegisterActivity" >
-    
+
+    <item
+        android:id="@+id/action_confirm_reg"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_accept"
+        android:title="Confirm"/>
+
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        app:showAsAction="never" />
 </menu>
