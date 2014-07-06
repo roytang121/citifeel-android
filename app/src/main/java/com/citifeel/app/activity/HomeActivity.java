@@ -77,6 +77,7 @@ public class HomeActivity extends FragmentActivity {
 
         // Create a tab listener that is called when the user changes tabs.
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
                 // show the given tab
                 if(mViewPager != null){
