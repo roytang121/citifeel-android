@@ -3,14 +3,28 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "http://mente.github.io/facebook-api-android-aar"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.11.+'
+        classpath 'com.android.tools.build:gradle:+'
     }
 }
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://mente.github.io/facebook-api-android-aar"
+    }
+}
+
 
 allprojects {
     repositories {
         mavenCentral()
+        maven {
+            url "http://mente.github.io/facebook-api-android-aar"
+        }
     }
 }

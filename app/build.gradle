@@ -26,7 +26,9 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.2.0'
     compile 'com.google.code.gson:gson:2.2.4'
     //compile project(':libraries:circleimageview')
-    compile project(':libraries:facebook')
-    compile 'com.loopj.android:android-async-http:1.4.+'
+//    compile 'com.loopj.android:android-async-http:1.4.+'
+    compile ('com.facebook:facebook-android-sdk:+@aar') {
+        transitive = true
+    }
     //compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
 }
