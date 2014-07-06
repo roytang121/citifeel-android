@@ -29,7 +29,7 @@ public class HomeActivity extends FragmentActivity {
 
     // items for tab bar
     public static final String[] TABS = {"Home", "Page2", "Page3"};
-    public static final int[] TABS_D = {R.drawable.ic_action_group, R.drawable.ic_action_place, R.drawable.ic_action_person};
+    public static final int[] TABS_D = {R.drawable.ic_action_group, R.drawable.ic_favorite, R.drawable.ic_action_person};
 
     //View pager
     ViewPager mViewPager;
@@ -83,14 +83,18 @@ public class HomeActivity extends FragmentActivity {
                     mViewPager.setCurrentItem(tab.getPosition());
                 }
                 // change the icon color
-                tab.getIcon().setColorFilter(Color.parseColor("#FF8800"), PorterDuff.Mode.MULTIPLY);
+                if (tab.getIcon() != null) {
+                    tab.getIcon().setColorFilter(Color.parseColor("#CC6D00"), PorterDuff.Mode.MULTIPLY);
+                }
             }
 
             public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
                 // hide the given tab
 
                 // change the icon color
-                tab.getIcon().setColorFilter(Color.parseColor("#CCCCCC"), PorterDuff.Mode.MULTIPLY);
+                if (tab.getIcon() != null) {
+                    tab.getIcon().clearColorFilter();
+                }
             }
 
             public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
