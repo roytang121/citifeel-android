@@ -6,6 +6,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -19,6 +20,7 @@ import com.citifeel.app.R;
 public class TagSearchView extends SearchView implements SearchView.OnQueryTextListener{
     private TextView tt;
     private EditText editText;
+    private static final String TAG = TagSearchView.class.getSimpleName();
 
     public TagSearchView(Context context) {
         super(context);
@@ -45,16 +47,17 @@ public class TagSearchView extends SearchView implements SearchView.OnQueryTextL
 
         int eid = getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         editText = (EditText) findViewById(id);
-
     }
 
     public void addTag(String tag) {
+        Log.i(TAG, "called addTag once");
         Tag d = new Tag("Tag");
         int tagH = getHeight() / 2;
         d.setHeight(tagH);
         ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BASELINE);
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
+        builder.append(editText.getText());      //append original text in edittext field
         builder.append("[tag]");
         builder.setSpan(new ImageSpan(d), builder.length() - "[tag]".length(), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tt.setText(builder);
@@ -73,6 +76,7 @@ public class TagSearchView extends SearchView implements SearchView.OnQueryTextL
     public boolean onQueryTextSubmit(String s) {
         /* should do nothing here */
         addTag(s);
+        clearFocus();
         return true;
     }
 }
