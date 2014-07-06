@@ -41,7 +41,7 @@ public class TonyButtonView extends View {
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(Color.WHITE);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
-        mTextPaint.setTextSize(CommonUtils.dp(getContext(), 18));
+        mTextPaint.setTextSize(CommonUtils.dp(getContext(), 16));
         text = getTag().toString();
     }
 

@@ -3,6 +3,8 @@ package com.citifeel.app.activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -80,10 +82,15 @@ public class HomeActivity extends FragmentActivity {
                 if(mViewPager != null){
                     mViewPager.setCurrentItem(tab.getPosition());
                 }
+                // change the icon color
+                tab.getIcon().setColorFilter(Color.parseColor("#FF8800"), PorterDuff.Mode.MULTIPLY);
             }
 
             public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
                 // hide the given tab
+
+                // change the icon color
+                tab.getIcon().setColorFilter(Color.parseColor("#CCCCCC"), PorterDuff.Mode.MULTIPLY);
             }
 
             public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
