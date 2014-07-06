@@ -141,7 +141,7 @@ public class LoginActivity extends BaseActivity {
 
         //login method 2: login with fb account
         com.facebook.widget.LoginButton fbloginbutton = (com.facebook.widget.LoginButton) findViewById(R.id.fbloginbutton);
-        fbloginbutton.setReadPermissions(Arrays.asList("public_profile", "user_status"));
+        fbloginbutton.setReadPermissions(Arrays.asList("public_profile", "user_status","email"));
         fbloginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
