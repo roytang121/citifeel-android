@@ -84,7 +84,9 @@ public class HomeActivity extends FragmentActivity {
                 }
                 // change the icon color
                 if (tab.getIcon() != null) {
-                    tab.getIcon().setColorFilter(Color.parseColor("#CC6D00"), PorterDuff.Mode.MULTIPLY);
+                    tab.getIcon().setColorFilter(Color.parseColor("#ff7700"), PorterDuff.Mode.MULTIPLY);
+                    //tab.getIcon().setColorFilter(Color.parseColor("#ff5500"), PorterDuff.Mode.LIGHTEN);
+
                 }
             }
 
