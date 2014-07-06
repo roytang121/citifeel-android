@@ -84,9 +84,8 @@ public class HomeActivity extends FragmentActivity {
                 }
                 // change the icon color
                 if (tab.getIcon() != null) {
-                    tab.getIcon().setColorFilter(Color.parseColor("#ff7700"), PorterDuff.Mode.MULTIPLY);
-                    //tab.getIcon().setColorFilter(Color.parseColor("#ff5500"), PorterDuff.Mode.LIGHTEN);
-
+                    tab.getIcon().clearColorFilter();
+                    tab.getIcon().setColorFilter(Color.parseColor("#ff8800"), PorterDuff.Mode.MULTIPLY);
                 }
             }
 
@@ -96,6 +95,7 @@ public class HomeActivity extends FragmentActivity {
                 // change the icon color
                 if (tab.getIcon() != null) {
                     tab.getIcon().clearColorFilter();
+                    tab.getIcon().setColorFilter(Color.parseColor("#cccccc"), PorterDuff.Mode.MULTIPLY);
                 }
             }
 
@@ -111,6 +111,7 @@ public class HomeActivity extends FragmentActivity {
 //                            .setText(TABS[i])
                             .setIcon(getResources().getDrawable(TABS_D[i]))
                             .setTabListener(tabListener));
+            actionBar.getTabAt(i).getIcon().setColorFilter(Color.parseColor("#CCCCCC"), PorterDuff.Mode.MULTIPLY);
         }
 
         if(mViewPager != null) {
