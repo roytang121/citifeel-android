@@ -8,6 +8,7 @@ import com.loopj.android.http.RequestParams;
 /**
  * Created by roytang on 31/3/14.
  */
+@Deprecated
 public abstract class ResponseHandler extends AsyncHttpResponseHandler{
     private AsyncHttpResponseHandler responseHandler;
     private Context context;

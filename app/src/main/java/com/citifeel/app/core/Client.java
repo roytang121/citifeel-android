@@ -13,6 +13,7 @@ import org.apache.http.client.params.ClientPNames;
  * Use volley as first pref.
  * AsyncHttpClient is used only when posting large file for application/multipart
  */
+@Deprecated
 public class Client {
     private static final String BASE_URL = "http://server-host/";
 
