@@ -3,6 +3,8 @@ package com.citifeel.app.activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -27,7 +29,7 @@ public class HomeActivity extends FragmentActivity {
 
     // items for tab bar
     public static final String[] TABS = {"Home", "Page2", "Page3"};
-    public static final int[] TABS_D = {R.drawable.ic_action_group, R.drawable.ic_action_place, R.drawable.ic_action_person};
+    public static final int[] TABS_D = {R.drawable.ic_action_group, R.drawable.ic_favorite, R.drawable.ic_action_person};
 
     //View pager
     ViewPager mViewPager;
@@ -75,15 +77,27 @@ public class HomeActivity extends FragmentActivity {
 
         // Create a tab listener that is called when the user changes tabs.
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
                 // show the given tab
                 if(mViewPager != null){
                     mViewPager.setCurrentItem(tab.getPosition());
                 }
+                // change the icon color
+                if (tab.getIcon() != null) {
+                    tab.getIcon().clearColorFilter();
+                    tab.getIcon().setColorFilter(Color.parseColor("#ff8800"), PorterDuff.Mode.MULTIPLY);
+                }
             }
 
             public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
                 // hide the given tab
+
+                // change the icon color
+                if (tab.getIcon() != null) {
+                    tab.getIcon().clearColorFilter();
+                    tab.getIcon().setColorFilter(Color.parseColor("#cccccc"), PorterDuff.Mode.MULTIPLY);
+                }
             }
 
             public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
@@ -98,6 +112,7 @@ public class HomeActivity extends FragmentActivity {
 //                            .setText(TABS[i])
                             .setIcon(getResources().getDrawable(TABS_D[i]))
                             .setTabListener(tabListener));
+            actionBar.getTabAt(i).getIcon().setColorFilter(Color.parseColor("#CCCCCC"), PorterDuff.Mode.MULTIPLY);
         }
 
         if(mViewPager != null) {

@@ -68,6 +68,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         fb:login_text="以facebook登入"
-        fb:logout_text="登出facebook"/>
+        fb:logout_text="以facebook登入"/>
 
    </LinearLayout>
