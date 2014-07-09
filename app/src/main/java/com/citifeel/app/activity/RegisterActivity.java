@@ -1,50 +1,54 @@
 package com.citifeel.app.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.citifeel.app.R;
+import com.citifeel.app.core.RegisterService;
 import com.citifeel.app.ui.FlowLayout.LayoutParams;
 import com.citifeel.app.ui.RoundedImageView;
 import com.citifeel.app.util.AlertDialogManager;
+import com.citifeel.app.util.CropOption;
+import com.citifeel.app.util.CropOptionAdapter;
 import com.facebook.LoggingBehavior;
+import com.facebook.Request;
+import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.Settings;
-import com.facebook.Request;
-import com.facebook.Response;
 import com.facebook.model.GraphUser;
-import android.os.AsyncTask;
-import android.widget.ImageView;
-import android.graphics.*;
-import android.text.method.LinkMovementMethod;
-import android.text.Html;
-import android.app.ActionBar;
-import java.io.InputStream;
+
 import java.io.File;
-import java.util.List;
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.DialogInterface;
-import android.content.pm.ResolveInfo;
-import android.graphics.Bitmap;
-import android.provider.MediaStore;
-import android.net.Uri;
-import android.os.Environment;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.citifeel.app.util.CropOption;
-import com.citifeel.app.util.CropOptionAdapter;
-import android.widget.EditText;
+import java.util.List;
 
 public class RegisterActivity extends Activity {
     private Session.StatusCallback statusCallback = new SessionStatusCallback();
@@ -429,6 +433,23 @@ public class RegisterActivity extends Activity {
         if(!password.equals(repassword)){
             alert.showAlertDialog(RegisterActivity.this,"註冊失敗","兩次輸入的密碼不同！",false);
             return;
+        }
+
+        try {
+            RegisterService.register(this, email, password, null, "", "", new RegisterService.RegisterServiceCallback() {
+                @Override
+                public void onSuccess() {
+                    
+                }
+
+                @Override
+                public void onFailure() {
+
+                }
+            });
+        } catch (FileNotFoundException e) {
+            /* profile not found (if any) */
+            e.printStackTrace();
         }
 
     }
