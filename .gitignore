@@ -32,3 +32,5 @@ Thumbs.db
 build/
 
 app/app.iml
+
+*.iml
