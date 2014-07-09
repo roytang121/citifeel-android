@@ -19,7 +19,7 @@ public class CommonUtils {
     public static void logKeyHash(Context context){
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(
-                    "com.citifeel.citifeel",
+                    "com.citifeel.app",
                     PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
