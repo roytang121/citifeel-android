@@ -435,10 +435,11 @@ public class RegisterActivity extends Activity {
         try {
             //create a file to write bitmap data
             File cacheDir = getBaseContext().getCacheDir();
-            profilepic = new File(cacheDir, "profilepic");
+            profilepic = new File(cacheDir, "profilepic.png");
             profilepic.createNewFile();
 
             //Convert bitmap to byte array
+            profilePicView.buildDrawingCache();
             Bitmap bitmap = profilePicView.getDrawingCache();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);

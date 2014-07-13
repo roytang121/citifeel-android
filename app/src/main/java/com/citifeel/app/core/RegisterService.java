@@ -37,6 +37,7 @@ public class RegisterService {
             public void onSuccess(String content) {
                 super.onSuccess(content);
                 if (callback != null) {
+                    //Log.i("reg response",content);
                     Gson gson = new Gson();
                     ResponseModel response = gson.fromJson(content, ResponseModel.class);
                     //Log.i("reg request response:", content);
