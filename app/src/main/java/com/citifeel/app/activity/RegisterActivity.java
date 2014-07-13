@@ -439,7 +439,7 @@ public class RegisterActivity extends Activity {
             RegisterService.register(this, email, password, null, "", "", new RegisterService.RegisterServiceCallback() {
                 @Override
                 public void onSuccess() {
-                    
+
                 }
 
                 @Override
