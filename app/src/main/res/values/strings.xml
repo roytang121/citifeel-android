@@ -12,6 +12,7 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_register">CitiFeel帳戶</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_post">分享</string>
 
 
 

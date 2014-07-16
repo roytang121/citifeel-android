@@ -35,6 +35,13 @@
             android:parentActivityName=".activity.LoginActivity">
         </activity>
 
+        <activity
+            android:name=".activity.PostActivity"
+            android:label="@string/title_activity_post"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activity.HomeActivity">
+        </activity>
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/app_id" />

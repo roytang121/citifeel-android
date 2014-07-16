@@ -206,8 +206,6 @@ public class RegisterActivity extends Activity {
             case R.id.action_confirm_reg:
                 register();
                 break;
-            case R.id.action_settings:
-                return true;
             default:
                 break;
         }
@@ -223,7 +221,7 @@ public class RegisterActivity extends Activity {
             startActivity(intent);
             finish();
         } else {
-            /* actually noy very possible to come to this stage , just for place holder */
+            /* actually not very possible to come to this stage , just for place holder */
             super.onBackPressed();
         }
     }
