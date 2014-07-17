@@ -1,3 +1,7 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,7 +18,7 @@
         android:id="@+id/statustextfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
@@ -34,7 +38,7 @@
         android:id="@+id/companytextfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
@@ -62,27 +66,44 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:hint="地址"/>
-
-
-
-    <TextView
-        android:text="分享"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="10dp"/>
-
-    <View android:layout_height="2dip" android:layout_width="match_parent" android:background="#FF909090" />
-
     <TableLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
         android:stretchColumns="0,1">
 
         <TableRow android:id="@+id/TableRow01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:id="@+id/scores_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="true"
+                android:prompt="@string/title_scores_spinner"/>
+            <Spinner
+                android:id="@+id/price_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/title_price_spinner"/>
+        </TableRow>
+
+
+        <TextView
+            android:text="分享"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="10dp"/>
+
+        <View android:layout_height="2dip" android:layout_width="match_parent" android:background="#FF909090" />
+
+
+
+        <TableRow android:id="@+id/TableRow02"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -114,3 +135,5 @@
 
 
 </LinearLayout>
+
+</ScrollView>

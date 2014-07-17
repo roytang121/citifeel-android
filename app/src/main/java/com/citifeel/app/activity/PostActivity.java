@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.citifeel.app.BaseActivity;
 import com.citifeel.app.R;
@@ -32,7 +34,19 @@ public class PostActivity extends BaseActivity{
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setIcon(getResources().getDrawable( R.drawable.ic_action_back ));
 
+        /* price & score spinners*/
+        Spinner scores_spinner = (Spinner) findViewById(R.id.scores_spinner);
 
+        ArrayAdapter<CharSequence> score_spinner_adapter = ArrayAdapter.createFromResource(this,
+                R.array.scores_array, android.R.layout.simple_spinner_item);
+        score_spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        scores_spinner.setAdapter(score_spinner_adapter);
+
+        Spinner price_spinner = (Spinner) findViewById(R.id.price_spinner);
+        ArrayAdapter<CharSequence> price_spinner_adapter = ArrayAdapter.createFromResource(this,
+                R.array.price_array, android.R.layout.simple_spinner_item);
+        price_spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        price_spinner.setAdapter(price_spinner_adapter);
 
 
     }

@@ -153,7 +153,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("FbLogin", "Result Code is - " + resultCode +"");
+        //Log.d("FbLogin", "Result Code is - " + resultCode +"");
         Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
     }
 
