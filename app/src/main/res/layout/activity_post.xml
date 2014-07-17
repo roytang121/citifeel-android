@@ -12,7 +12,6 @@
 
     <EditText
         android:id="@+id/statustextfield"
-        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -23,7 +22,6 @@
 
     <EditText
         android:id="@+id/tagstextfield_reg"
-        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -31,6 +29,40 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:hint="新增標籤"/>
+
+    <EditText
+        android:id="@+id/companytextfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:hint="公司"/>
+
+    <EditText
+        android:id="@+id/districttextfield_reg"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:hint=""
+        android:drawableRight="@drawable/ic_action_location_found"/>
+
+    <EditText
+        android:id="@+id/addresstextfield_reg"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:hint="地址"/>
+
 
 
     <TextView
@@ -48,7 +80,7 @@
     <TableLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:stretchColumns="0">
+        android:stretchColumns="0,1">
 
         <TableRow android:id="@+id/TableRow01"
             android:layout_width="match_parent"
@@ -62,20 +94,19 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="16dp"
-
                 fb:login_text="Facebook"
                 fb:logout_text="Facebook"/>
             <com.facebook.widget.LoginButton
                 xmlns:fb="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/sharegoogleplusbutton"
+                android:id="@+id/sharetwitterbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="16dp"
-                
-                fb:login_text="Facebook"
-                fb:logout_text="Facebook"/>
+                fb:login_text="Twitter"
+                fb:logout_text="Twitter"/>
+
 
         </TableRow>
 
