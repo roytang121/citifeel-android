@@ -4,6 +4,12 @@
     tools:context="com.citifeel.app.activity.PostActivity" >
 
     <item
+        android:id="@+id/action_qrcode_input"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_qrcode"
+        android:title="QR Code Scan"/>
+
+    <item
         android:id="@+id/action_confirm_post"
         android:showAsAction="ifRoom"
         android:icon="@drawable/ic_action_accept"
