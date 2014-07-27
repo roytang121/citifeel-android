@@ -3,6 +3,7 @@ package com.citifeel.app.activity;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -30,11 +31,14 @@ import android.widget.Toast;
 
 import com.citifeel.app.R;
 import com.citifeel.app.core.RegisterService;
+import com.citifeel.app.core.ServerRequestManager;
+import com.citifeel.app.model.UserModel;
 import com.citifeel.app.ui.FlowLayout.LayoutParams;
 import com.citifeel.app.ui.RoundedImageView;
 import com.citifeel.app.util.AlertDialogManager;
 import com.citifeel.app.util.CropOption;
 import com.citifeel.app.util.CropOptionAdapter;
+import com.citifeel.app.util.SessionManager;
 import com.facebook.LoggingBehavior;
 import com.facebook.Request;
 import com.facebook.Response;
@@ -43,8 +47,10 @@ import com.facebook.SessionState;
 import com.facebook.Settings;
 import com.facebook.model.GraphUser;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,10 +73,16 @@ public class RegisterActivity extends Activity {
 
     AlertDialogManager alert = new AlertDialogManager();
 
+    // Session Manager Class
+    SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        // Session Manager
+        session = new SessionManager(RegisterActivity.this);
 
         ViewGroup flowContainer = (ViewGroup) findViewById(R.id.flow_layout);
         TextView statTextView=new TextView(this);
@@ -419,12 +431,35 @@ public class RegisterActivity extends Activity {
     }
 
     private void register(){
-        String email = emailTextField.getText().toString();
+        File profilepic=null;
+        try {
+            //create a file to write bitmap data
+            File cacheDir = getBaseContext().getCacheDir();
+            profilepic = new File(cacheDir, "profilepic");
+            profilepic.createNewFile();
+
+            //Convert bitmap to byte array
+            Bitmap bitmap = profilePicView.getDrawingCache();
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+            byte[] bitmapdata = bos.toByteArray();
+
+            //write the bytes in file
+            FileOutputStream fos = new FileOutputStream(profilepic);
+            fos.write(bitmapdata);
+            fos.flush();
+            fos.close();
+
+        }catch(Exception e){
+
+        }
+
+        final String email = emailTextField.getText().toString();
         if(email.equals("")){
             alert.showAlertDialog(RegisterActivity.this,"註冊失敗","請輸入有效的電郵！",false);
             return;
         }
-        String password = passwordTextField.getText().toString();
+        final String password = passwordTextField.getText().toString();
         if(password.equals("")){
             alert.showAlertDialog(RegisterActivity.this,"註冊失敗","請輸入自定密碼！",false);
             return;
@@ -435,15 +470,42 @@ public class RegisterActivity extends Activity {
             return;
         }
 
+        final String username = userNameTextField.getText().toString();
+
         try {
-            RegisterService.register(this, email, password, null, "", "", new RegisterService.RegisterServiceCallback() {
+            RegisterService.register(this, email, password, profilepic, username, new RegisterService.RegisterServiceCallback() {
                 @Override
                 public void onSuccess() {
+                    Log.i("Register","success, now logging in");
+
+                    /* on start progress */
+                    final ProgressDialog pd = alert.showProgress(RegisterActivity.this, "登入", "登入中，請稍候...", true, false);
+                    ServerRequestManager.login(email, password, new ServerRequestManager.OnLoginCallback() {
+                        @Override
+                        public void onSuccessLogin(UserModel user) {
+                            // Creating user login session
+                            pd.dismiss();
+                            session.createLoginSession(user.getUserHashMap());
+
+                            Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailedLogin(String msg) {
+                            pd.dismiss();
+                            Log.i("error message", msg);
+                            alert.showAlertDialog(RegisterActivity.this, "登入失敗..", msg, null);
+                        }
+                    });
 
                 }
 
                 @Override
-                public void onFailure() {
+                public void onFailure(String msg) {
+                    Log.i("reg error message", msg);
+                    alert.showAlertDialog(RegisterActivity.this, "注冊失敗..", msg, null);
 
                 }
             });

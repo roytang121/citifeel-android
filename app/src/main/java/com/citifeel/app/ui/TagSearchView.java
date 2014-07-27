@@ -1,26 +1,26 @@
 package com.citifeel.app.ui;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ImageSpan;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.PopupMenu;
 
-import com.citifeel.app.R;
+import java.util.ArrayList;
 
 /**
  * Created by roytang on 24/6/14.
  */
-public class TagSearchView extends SearchView implements SearchView.OnQueryTextListener{
-    private TextView tt;
-    private EditText editText;
+public class TagSearchView extends AutoCompleteTextView implements AdapterView.OnItemClickListener{
     private static final String TAG = TagSearchView.class.getSimpleName();
+    private PopupMenu popup;
+    private ArrayList<String> suggestions = new ArrayList<String>();
+    private ArrayAdapter<String> mAdapter;
+    private OnTagSelectedListener l;
 
     public TagSearchView(Context context) {
         super(context);
@@ -33,50 +33,63 @@ public class TagSearchView extends SearchView implements SearchView.OnQueryTextL
     }
 
     private void init() {
-        /* listener */
-        setOnQueryTextListener(this);
-        /* text view */
-        int id = getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-        tt = (TextView) findViewById(id);
-        tt.setTextColor(Color.WHITE);
-        tt.setHintTextColor(Color.WHITE);
+        mAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,suggestions);
+        setAdapter(mAdapter);
 
-        int searchImgId = getContext().getResources().getIdentifier("android:id/search_mag_icon", null, null);
-        ImageView icon = (ImageView) findViewById(searchImgId);
-        icon.setImageResource(R.drawable.ic_action_search);
+        addTextChangedListener(watcher);
 
-        int eid = getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-        editText = (EditText) findViewById(id);
+        setOnItemClickListener(this);
     }
 
     public void addTag(String tag) {
-        Log.i(TAG, "called addTag once");
-        Tag d = new Tag("Tag");
-        int tagH = getHeight() / 2;
-        d.setHeight(tagH);
-        ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BASELINE);
-
-        SpannableStringBuilder builder = new SpannableStringBuilder();
-        builder.append(editText.getText());      //append original text in edittext field
-        builder.append("[tag]");
-        builder.setSpan(new ImageSpan(d), builder.length() - "[tag]".length(), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tt.setText(builder);
-
-        editText.setSelection(editText.length());
+//        Log.i(TAG, "called addTag once");
+//        Tag d = new Tag(tag);
+//        int tagH = getHeight() / 2;
+//        d.setHeight(tagH);
+//        ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BASELINE);
+//
+//        SpannableStringBuilder builder = new SpannableStringBuilder();
+//        builder.append(editText.getText());      //append original text in edittext field
+//        builder.append("[tag]");
+//        builder.setSpan(new ImageSpan(d), builder.length() - "[tag]".length(), builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        tt.setText(builder);
+//
+//        editText.setSelection(editText.length());
     }
 
-    @Override
-    public boolean onQueryTextChange(String s) {
+    private TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
-        /* here should show hint */
-        return false;
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            suggestions.clear();
+            suggestions.add(editable.toString());
+            mAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,suggestions);
+            setAdapter(mAdapter);
+            if(editable.length() > 0) showDropDown();
+        }
+    };
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+        if(this.l != null) {
+            l.onTagSelected(suggestions.get(i));
+        }
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        /* should do nothing here */
-        addTag(s);
-        clearFocus();
-        return true;
+    public interface OnTagSelectedListener{
+        public void onTagSelected(String tag);
+    }
+
+    public void setOnTagSelectedListener(OnTagSelectedListener l) {
+        this.l = l;
     }
 }
