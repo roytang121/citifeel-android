@@ -6,9 +6,13 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
+
+import com.citifeel.app.R;
+import com.citifeel.app.adapter.TagSeachAdapter;
+import com.citifeel.app.model.TagModel;
 
 import java.util.ArrayList;
 
@@ -18,8 +22,8 @@ import java.util.ArrayList;
 public class TagSearchView extends AutoCompleteTextView implements AdapterView.OnItemClickListener{
     private static final String TAG = TagSearchView.class.getSimpleName();
     private PopupMenu popup;
-    private ArrayList<String> suggestions = new ArrayList<String>();
-    private ArrayAdapter<String> mAdapter;
+    private ArrayList<TagModel> suggestions = new ArrayList<TagModel>();
+    private TagSeachAdapter mAdapter;
     private OnTagSelectedListener l;
 
     public TagSearchView(Context context) {
@@ -33,7 +37,8 @@ public class TagSearchView extends AutoCompleteTextView implements AdapterView.O
     }
 
     private void init() {
-        mAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,suggestions);
+        fakeData();
+        mAdapter = new TagSeachAdapter(getContext(), suggestions);
         setAdapter(mAdapter);
 
         addTextChangedListener(watcher);
@@ -70,18 +75,21 @@ public class TagSearchView extends AutoCompleteTextView implements AdapterView.O
 
         @Override
         public void afterTextChanged(Editable editable) {
-            suggestions.clear();
-            suggestions.add(editable.toString());
-            mAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,suggestions);
-            setAdapter(mAdapter);
-            if(editable.length() > 0) showDropDown();
+//            Log.i("ADS", editable.toString());
+//            suggestions.clear();
+//            suggestions.add(new TagModel(editable.toString()));
+//            mAdapter = new TagSeachAdapter(getContext(), suggestions);
+//            setAdapter(mAdapter);
+//            if(editable.length() > 0) showDropDown();
+//            showDropDown();
         }
     };
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
         if(this.l != null) {
-            l.onTagSelected(suggestions.get(i));
+            TextView tt = (TextView) view.findViewById(R.id.tag);
+            l.onTagSelected(tt.getText().toString());
         }
     }
 
@@ -91,5 +99,21 @@ public class TagSearchView extends AutoCompleteTextView implements AdapterView.O
 
     public void setOnTagSelectedListener(OnTagSelectedListener l) {
         this.l = l;
+    }
+
+    private void fakeData() {
+        String[] set = {
+                "一田",
+                "椰林閣",
+                "GigaSports",
+                "GigaBytes",
+                "Giga",
+                "Wastons",
+                "Ruby Tuesday"
+        };
+
+        for(String s : set) {
+            suggestions.add(new TagModel(s));
+        }
     }
 }

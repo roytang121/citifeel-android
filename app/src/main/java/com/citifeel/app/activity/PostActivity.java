@@ -2,25 +2,37 @@ package com.citifeel.app.activity;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.citifeel.app.BaseActivity;
 import com.citifeel.app.R;
-import com.facebook.Session;
-import com.facebook.SessionState;
+import com.citifeel.app.util.CommonUtils;
+import com.kbeanie.imagechooser.api.ChooserType;
+import com.kbeanie.imagechooser.api.ChosenImage;
+import com.kbeanie.imagechooser.api.ImageChooserListener;
+import com.kbeanie.imagechooser.api.ImageChooserManager;
 
 import java.io.File;
 
 /**
  * Created by ywng on 16/7/14.
  */
-public class PostActivity extends BaseActivity{
+public class PostActivity extends BaseActivity implements ImageChooserListener{
+
+    private int chooserType;
+    private ImageChooserManager imageChooserManager;
+    private String filePath;
+    private LinearLayout galleryRow;
+    private int imageWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +60,31 @@ public class PostActivity extends BaseActivity{
         price_spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         price_spinner.setAdapter(price_spinner_adapter);
 
+        /* image picker */
+        ImageView pickButton = (ImageView) findViewById(R.id.pickImage);
+        pickButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseImage();
+            }
+        });
+        galleryRow = (LinearLayout) findViewById(R.id.galleryRow);
+        imageWidth = CommonUtils.dp(this, 80);
 
+    }
+
+    private void chooseImage() {
+        chooserType = ChooserType.REQUEST_PICK_PICTURE;
+        imageChooserManager = new ImageChooserManager(this,
+                chooserType, "citifeel", true);
+        imageChooserManager.setImageChooserListener(this);
+        try {
+            filePath = imageChooserManager.choose();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -100,13 +136,14 @@ public class PostActivity extends BaseActivity{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // TODO Save current session
-        super.onSaveInstanceState(outState);
-
+        if (resultCode == RESULT_OK
+                && (requestCode == ChooserType.REQUEST_PICK_PICTURE || requestCode == ChooserType.REQUEST_CAPTURE_PICTURE)) {
+            if (imageChooserManager == null) {
+                reinitializeImageChooser();
+            }
+            imageChooserManager.submit(requestCode, data);
+        } else {
+        }
     }
 
     @Override
@@ -130,5 +167,58 @@ public class PostActivity extends BaseActivity{
     }
 
 
+    @Override
+    public void onImageChosen(final ChosenImage image) {
+        runOnUiThread(new Runnable() {
 
+            @Override
+            public void run() {
+                if (image != null) {
+                    ImageView im = new ImageView(PostActivity.this);
+                    im.setLayoutParams(new ViewGroup.LayoutParams(imageWidth, imageWidth));
+                    im.setImageURI(Uri.parse(new File(image.getFileThumbnail()).toString()));
+                    im.setAdjustViewBounds(true);
+                    im.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    galleryRow.addView(im, 0);
+//                    imageViewThumbnail.setImageURI(Uri.parse(new File(image
+//                            .getFileThumbnail()).toString()));
+//                    imageViewThumbSmall.setImageURI(Uri.parse(new File(image
+//                            .getFileThumbnailSmall()).toString()));
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onError(String s) {
+
+    }
+
+    private void reinitializeImageChooser() {
+        imageChooserManager = new ImageChooserManager(this, chooserType,
+                "citifeel", true);
+        imageChooserManager.setImageChooserListener(this);
+        imageChooserManager.reinitialize(filePath);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("chooser_type", chooserType);
+        outState.putString("media_path", filePath);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey("chooser_type")) {
+                chooserType = savedInstanceState.getInt("chooser_type");
+            }
+
+            if (savedInstanceState.containsKey("media_path")) {
+                filePath = savedInstanceState.getString("media_path");
+            }
+        }
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }
