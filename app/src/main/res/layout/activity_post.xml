@@ -64,18 +64,6 @@
         android:hint="公司"/>
 
     <EditText
-        android:id="@+id/districttextfield_reg"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint=""
-        android:drawableRight="@drawable/ic_action_location_found"/>
-
-    <EditText
         android:id="@+id/addresstextfield_reg"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
