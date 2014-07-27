@@ -151,6 +151,11 @@ public class HomeActivity extends FragmentActivity {
             Intent intent = new Intent(this, SearchActivity.class);
             startActivity(intent);
             return true;
+        } else if(id == R.id.action_create) {
+            /* jump to post activity */
+            Intent intent = new Intent(this, PostActivity.class);
+            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

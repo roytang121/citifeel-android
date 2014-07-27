@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.citifeel.app.activity.PostActivity" >
+
+    <item
+        android:id="@+id/action_qrcode_input"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_qrcode"
+        android:title="QR Code Scan"/>
+
+    <item
+        android:id="@+id/action_confirm_post"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_accept"
+        android:title="Post"/>
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+</menu>
