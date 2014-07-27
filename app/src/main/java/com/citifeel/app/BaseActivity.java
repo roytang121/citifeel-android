@@ -2,10 +2,13 @@ package com.citifeel.app;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.ViewConfiguration;
 
 import com.citifeel.app.core.Client;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.lang.reflect.Field;
 
 /**
  * @author roytang
@@ -23,6 +26,18 @@ public abstract class BaseActivity extends Activity {
         //init imageLoader if no instance has been given
         if(imageLoader == null){
             imageLoader = ImageLoader.getInstance();
+        }
+
+        //disable menu button
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception ex) {
+            // Ignore
         }
     }
 
