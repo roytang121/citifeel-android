@@ -114,26 +114,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.facebook.widget.LoginButton
-                xmlns:fb="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/sharefbbutton"
+            <Button
+
+                android:id="@+id/share_fb_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="16dp"
-                fb:login_text="Facebook"
-                fb:logout_text="Facebook"/>
-            <com.facebook.widget.LoginButton
-                xmlns:fb="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/sharetwitterbutton"
+                android:drawableLeft="@drawable/share_fb_logo"/>
+            
+            <Button
+
+                android:id="@+id/share_twitter_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="16dp"
-                fb:login_text="Twitter"
-                fb:logout_text="Twitter"/>
+                android:layout_marginBottom="16dp"/>
 
 
         </TableRow>
