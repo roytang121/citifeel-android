@@ -30,7 +30,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_action_place"/>
+                android:src="@drawable/ic_action_new"/>
             </LinearLayout>
     </HorizontalScrollView>
     <EditText
