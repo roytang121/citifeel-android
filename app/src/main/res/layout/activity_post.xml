@@ -73,10 +73,12 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:hint="地址"/>
+
     <TableLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="5dp"
         android:stretchColumns="0,1">
 
         <TableRow android:id="@+id/TableRow01"
@@ -106,7 +108,7 @@
             android:layout_marginRight="4dp"
             android:layout_marginBottom="10dp"/>
 
-        <View android:layout_height="2dip" android:layout_width="match_parent" android:background="#FF909090" />
+        <View android:layout_height="2.5dip" android:layout_width="match_parent" android:background="#FF909090" />
 
 
 
@@ -117,21 +119,55 @@
             <Button
 
                 android:id="@+id/share_fb_button"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="16dp"
+                android:background="@drawable/cell_shape_right_bottom"
+                android:text="Facebook"
                 android:drawableLeft="@drawable/share_fb_logo"/>
             
             <Button
 
                 android:id="@+id/share_twitter_button"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="16dp"/>
+                android:paddingLeft="5dip"
+                android:background="@drawable/cell_shape_bottom"
+                android:text="Twitter"
+                android:drawableLeft="@drawable/share_twitter_logo"/>
+
+
+
+
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+
+                android:id="@+id/share_instagram_button"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape_right_bottom"
+                android:text="Instagram"
+                android:drawableLeft="@drawable/share_instagram_logo"/>
+
+            <Button
+
+                android:id="@+id/share_weibo_button"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:background="@drawable/cell_shape_bottom"
+                android:text="微博"
+                android:drawableLeft="@drawable/share_weibo_logo"/>
+
+
 
 
         </TableRow>
