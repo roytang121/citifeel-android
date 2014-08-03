@@ -2,13 +2,16 @@ package com.citifeel.app.activity;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -33,6 +36,13 @@ public class PostActivity extends BaseActivity implements ImageChooserListener{
     private String filePath;
     private LinearLayout galleryRow;
     private int imageWidth;
+
+    private boolean fb_share=false;
+    private boolean twitter_share=false;
+    private boolean instagram_share=false;
+    private boolean weibo_share=false;
+    private boolean wechat_share=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +80,86 @@ public class PostActivity extends BaseActivity implements ImageChooserListener{
         });
         galleryRow = (LinearLayout) findViewById(R.id.galleryRow);
         imageWidth = CommonUtils.dp(this, 80);
+
+
+
+        /* share buttons */
+        final Button fb_shareButton=(Button) findViewById(R.id.share_fb_button);
+        fb_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_fb_logo_dark, 0, 0, 0);
+        final Button twitter_shareButton=(Button) findViewById(R.id.share_twitter_button);
+        twitter_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_twitter_logo_dark, 0, 0, 0);
+        final Button instagram_shareButton=(Button) findViewById(R.id.share_instagram_button);
+        instagram_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_instagram_logo_dark, 0, 0, 0);
+        final Button weibo_shareButton=(Button) findViewById(R.id.share_weibo_button);
+        weibo_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_weibo_logo_dark, 0, 0, 0);
+        final Button wechat_shareButton=(Button) findViewById(R.id.share_wechat_button);
+        wechat_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_wechat_logo_dark, 0, 0, 0);
+
+        fb_shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(fb_share==true){
+                    //Log.d("share btn:","fb share btn clicked.");
+                    fb_share=false;
+                    fb_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_fb_logo_dark, 0, 0, 0);
+                }else{
+                    fb_share=true;
+                    fb_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_fb_logo, 0, 0, 0);
+                }
+            }
+        });
+        twitter_shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(twitter_share){
+                    twitter_share=false;
+                    twitter_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_twitter_logo_dark, 0, 0, 0);
+                }else{
+                    twitter_share=true;
+                    twitter_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_twitter_logo, 0, 0, 0);
+                }
+
+            }
+        });
+        instagram_shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(instagram_share){
+                    instagram_share=false;
+                    instagram_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_instagram_logo_dark, 0, 0, 0);
+                }else{
+                    instagram_share=true;
+                    instagram_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_instagram_logo, 0, 0, 0);
+                }
+            }
+        });
+        wechat_shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(wechat_share){
+                    wechat_share=false;
+                    wechat_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_wechat_logo_dark, 0, 0, 0);
+                }else{
+                    wechat_share=true;
+                    wechat_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_wechat_logo, 0, 0, 0);
+                }
+
+            }
+        });
+        weibo_shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(weibo_share){
+                    weibo_share=false;
+                    weibo_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_weibo_logo_dark, 0, 0, 0);
+                }else{
+                    weibo_share=true;
+                    weibo_shareButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.share_weibo_logo, 0, 0, 0);
+                }
+
+            }
+        });
+
 
     }
 
@@ -221,4 +311,8 @@ public class PostActivity extends BaseActivity implements ImageChooserListener{
         }
         super.onRestoreInstanceState(savedInstanceState);
     }
+
+
+
+
 }

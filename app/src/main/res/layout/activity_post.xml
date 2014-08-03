@@ -122,9 +122,9 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
                 android:background="@drawable/cell_shape_right_bottom"
-                android:text="Facebook"
-                android:drawableLeft="@drawable/share_fb_logo"/>
+                android:text="Facebook"/>
             
             <Button
 
@@ -134,8 +134,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dip"
                 android:background="@drawable/cell_shape_bottom"
-                android:text="Twitter"
-                android:drawableLeft="@drawable/share_twitter_logo"/>
+                android:text="Twitter"/>
 
 
 
@@ -152,9 +151,28 @@
                 android:layout_weight="1"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
                 android:background="@drawable/cell_shape_right_bottom"
-                android:text="Instagram"
-                android:drawableLeft="@drawable/share_instagram_logo"/>
+                android:text="Instagram"/>
+
+            <Button
+
+                android:id="@+id/share_wechat_button"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:background="@drawable/cell_shape_bottom"
+                android:text="WeChat"/>
+
+
+
+
+        </TableRow>
+
+        <TableRow android:id="@+id/TableRow04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <Button
 
@@ -163,14 +181,22 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dip"
+                android:background="@drawable/cell_shape_right_bottom"
+                android:text="微博"/>
+
+            <Button
+
+                android:id="@+id/share_dummy_button"
+                android:layout_weight="1"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
                 android:background="@drawable/cell_shape_bottom"
-                android:text="微博"
-                android:drawableLeft="@drawable/share_weibo_logo"/>
-
-
+                android:text=""  />
 
 
         </TableRow>
+
 
     </TableLayout>
 
