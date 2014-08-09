@@ -70,16 +70,28 @@ public class PostActivity extends BaseActivity implements ImageChooserListener{
         price_spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         price_spinner.setAdapter(price_spinner_adapter);
 
-        /* image picker */
+        /* image picker from library */
         ImageView pickButton = (ImageView) findViewById(R.id.pickImage);
         pickButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                chooserType = ChooserType.REQUEST_PICK_PICTURE;
                 chooseImage();
             }
         });
         galleryRow = (LinearLayout) findViewById(R.id.galleryRow);
         imageWidth = CommonUtils.dp(this, 80);
+
+         /* image picker from camera */
+        ImageView pickButton_camera = (ImageView) findViewById(R.id.pickImage_camera);
+        pickButton_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooserType=ChooserType.REQUEST_CAPTURE_PICTURE;
+                chooseImage();
+            }
+        });
+
 
 
 
@@ -164,7 +176,6 @@ public class PostActivity extends BaseActivity implements ImageChooserListener{
     }
 
     private void chooseImage() {
-        chooserType = ChooserType.REQUEST_PICK_PICTURE;
         imageChooserManager = new ImageChooserManager(this,
                 chooserType, "citifeel", true);
         imageChooserManager.setImageChooserListener(this);
@@ -265,7 +276,10 @@ public class PostActivity extends BaseActivity implements ImageChooserListener{
             public void run() {
                 if (image != null) {
                     ImageView im = new ImageView(PostActivity.this);
-                    im.setLayoutParams(new ViewGroup.LayoutParams(imageWidth, imageWidth));
+                  //  im.setLayoutParams(new ViewGroup.LayoutParams(imageWidth, imageWidth));
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(imageWidth, imageWidth);
+                    lp.setMargins(0,0,4,0);
+                    im.setLayoutParams(lp);
                     im.setImageURI(Uri.parse(new File(image.getFileThumbnail()).toString()));
                     im.setAdjustViewBounds(true);
                     im.setScaleType(ImageView.ScaleType.CENTER_CROP);
