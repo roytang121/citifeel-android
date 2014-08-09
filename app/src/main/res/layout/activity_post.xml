@@ -42,15 +42,6 @@
                 android:src="@drawable/ic_action_new_photo_camera"/>
             </LinearLayout>
     </HorizontalScrollView>
-    <EditText
-        android:id="@+id/statustextfield"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="你的心情" />
 
     <EditText
         android:id="@+id/tagstextfield_reg"
@@ -63,10 +54,20 @@
         android:hint="新增標籤"/>
 
     <EditText
-        android:id="@+id/companytextfield"
+        android:id="@+id/statustextfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:hint="你在想什麼？" />
+
+    <EditText
+        android:id="@+id/companytextfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"

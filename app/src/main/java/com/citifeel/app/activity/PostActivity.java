@@ -294,8 +294,15 @@ public class PostActivity extends BaseActivity implements ImageChooserListener{
     }
 
     @Override
-    public void onError(String s) {
+    public void onError(final String reason) {
+        runOnUiThread(new Runnable() {
 
+            @Override
+            public void run() {
+                // Show error message
+                Log.i("image choosing error message", reason);
+            }
+        });
     }
 
     private void reinitializeImageChooser() {
